@@ -26,15 +26,24 @@ function App() {
   const row3 = displayCards.slice(14);
   return (
     <>
-      <h1>Card Trick</h1>
+      <h1 className="header">Card Trick</h1>
       <div className="display-cards">
-        <div>
+        <div className="row">
+          <div>
+            <button>Row1</button>
+          </div>
           <Card renderRow={row1} />
         </div>
-        <div>
+        <div className="row">
+          <div>
+            <button>Row2</button>
+          </div>
           <Card renderRow={row2} />
         </div>
-        <div>
+        <div className="row">
+          <div>
+            <button>Row3</button>
+          </div>
           <Card renderRow={row3} />
         </div>
       </div>
