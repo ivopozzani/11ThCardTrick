@@ -1,5 +1,5 @@
 const createCardsArray = (suits, numerals) => {
-  let cards = [];
+  const cards = [];
   suits.forEach((suit) => {
     numerals.forEach((numeral) => {
       const obj = { suit: suit, numeral: numeral };
@@ -15,17 +15,18 @@ const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-function initialCardsTrick(suits, numerals) {
-  const CARDSTODISPLAY = 21;
-  const displayCards = [];
+function InitialCardsTrick(suits, numerals, totalCardsToTrick = 21) {
+  const randomDeckOfCards = [];
   const cardsArray = createCardsArray(suits, numerals);
 
-  while (displayCards.length < CARDSTODISPLAY) {
-    const addcard = cardsArray[getRandomNumber(0, cardsArray.length - 1)];
-    if (!displayCards.includes(addcard)) {
-      displayCards.push(addcard);
+  while (randomDeckOfCards.length < totalCardsToTrick) {
+    const cardToAdd = cardsArray[getRandomNumber(0, cardsArray.length - 1)];
+    if (!randomDeckOfCards.includes(cardToAdd)) {
+      randomDeckOfCards.push(cardToAdd);
     }
   }
+
+  return randomDeckOfCards.slice(0, totalCardsToTrick);
 }
 
-export default initialCardsTrick;
+export default InitialCardsTrick;
