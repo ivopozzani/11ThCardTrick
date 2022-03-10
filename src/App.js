@@ -124,7 +124,9 @@ function App() {
           <h2>Your Chosen Card is:</h2>
           <Card renderRow={[rows.row2[3]]} />
           <div>
-            <button onClick={restartTrick}>Restart Trick</button>
+            <button disabled={!activeState} onClick={restartTrick}>
+              Restart Trick
+            </button>
           </div>
         </div>
       </div>
