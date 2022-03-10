@@ -20,12 +20,10 @@ const cardNumerals = [
   "K",
 ];
 const ROWSIZE = 7;
-const firstRow = initialCardsTrick(cardSuits, cardNumerals).slice(0, ROWSIZE);
-const secondRow = initialCardsTrick(cardSuits, cardNumerals).slice(
-  ROWSIZE,
-  ROWSIZE * 2
-);
-const thirdRow = initialCardsTrick(cardSuits, cardNumerals).slice(ROWSIZE * 2);
+const cardsToTrick = initialCardsTrick(cardSuits, cardNumerals);
+const firstRow = cardsToTrick.slice(0, ROWSIZE);
+const secondRow = cardsToTrick.slice(ROWSIZE, ROWSIZE * 2);
+const thirdRow = cardsToTrick.slice(ROWSIZE * 2);
 
 function App({
   initialState = { row1: firstRow, row2: secondRow, row3: thirdRow },
