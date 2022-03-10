@@ -20,6 +20,8 @@ const cardNumerals = [
   "K",
 ];
 const ROWSIZE = 7;
+let counter = 0;
+
 const setInitialState = () => {
   const cardsToTrick = initialCardsTrick(cardSuits, cardNumerals);
   const firstRow = cardsToTrick.slice(0, ROWSIZE);
@@ -28,7 +30,6 @@ const setInitialState = () => {
 
   return { row1: firstRow, row2: secondRow, row3: thirdRow };
 };
-let counter = 0;
 
 function App() {
   const [rows, setRows] = useState(setInitialState());
