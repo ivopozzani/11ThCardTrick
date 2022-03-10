@@ -66,9 +66,9 @@ function App() {
       <h1 className={activeState ? "displayOpaque header" : "header"}>
         Card Trick
       </h1>
-      <div className="display-cards">
+      <div className="display-cards" data-testid="display-cards">
         <div className={activeState ? "displayOpaque" : ""}>
-          <div className="row">
+          <div className="row" data-testid="row">
             <div>
               <button
                 disabled={activeState}
@@ -85,7 +85,7 @@ function App() {
             </div>
             <Card renderRow={rows.row1} />
           </div>
-          <div className="row">
+          <div className="row" data-testid="row">
             <div>
               <button
                 disabled={activeState}
@@ -102,7 +102,7 @@ function App() {
             </div>
             <Card renderRow={rows.row2} />
           </div>
-          <div className="row">
+          <div className="row" data-testid="row">
             <div>
               <button
                 disabled={activeState}
