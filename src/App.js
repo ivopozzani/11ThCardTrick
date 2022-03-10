@@ -1,6 +1,7 @@
 import "./App.css";
 import Card from "./components/Card";
-import initialCardsTrick from "../utils/initialCardsTrick";
+import { useState } from "react";
+import initialCardsTrick from "./utils/initialCardsTrick";
 
 const cardSuits = ["spades", "clubs", "diamonds", "hearts"];
 const cardNumerals = [
@@ -18,33 +19,71 @@ const cardNumerals = [
   "Q",
   "K",
 ];
-const displayCards = initialCardsTrick(cardSuits, cardNumerals);
+const ROWSIZE = 7;
+const cardsToTrick = initialCardsTrick(cardSuits, cardNumerals);
+const firstRow = cardsToTrick.slice(0, ROWSIZE);
+const secondRow = cardsToTrick.slice(ROWSIZE, ROWSIZE * 2);
+const thirdRow = cardsToTrick.slice(ROWSIZE * 2);
 
-function App() {
-  const row1 = displayCards.slice(0, 7);
-  const row2 = displayCards.slice(7, 14);
-  const row3 = displayCards.slice(14);
+function App({
+  initialState = { row1: firstRow, row2: secondRow, row3: thirdRow },
+}) {
+  const [rows, setRows] = useState(initialState);
+
+  const updateRowsState = (before, middle, after) => {
+    const cardsToDeal = [...before, ...middle, ...after];
+
+    rows.row1 = [];
+    rows.row2 = [];
+    rows.row3 = [];
+
+    for (let i = 0; i < ROWSIZE; i++) {
+      rows.row1.push(cardsToDeal.shift());
+      rows.row2.push(cardsToDeal.shift());
+      rows.row3.push(cardsToDeal.shift());
+    }
+    setRows({ row1: rows.row1, row2: rows.row2, row3: rows.row3 });
+  };
+
   return (
     <>
       <h1 className="header">Card Trick</h1>
       <div className="display-cards">
         <div className="row">
           <div>
-            <button>Row1</button>
+            <button
+              onClick={() =>
+                updateRowsState([...rows.row2], [...rows.row1], [...rows.row3])
+              }
+            >
+              Row1
+            </button>
           </div>
-          <Card renderRow={row1} />
+          <Card renderRow={rows.row1} />
         </div>
         <div className="row">
           <div>
-            <button>Row2</button>
+            <button
+              onClick={() =>
+                updateRowsState([...rows.row1], [...rows.row2], [...rows.row3])
+              }
+            >
+              Row2
+            </button>
           </div>
-          <Card renderRow={row2} />
+          <Card renderRow={rows.row2} />
         </div>
         <div className="row">
           <div>
-            <button>Row3</button>
+            <button
+              onClick={() =>
+                updateRowsState([...rows.row1], [...rows.row3], [...rows.row2])
+              }
+            >
+              Row3
+            </button>
           </div>
-          <Card renderRow={row3} />
+          <Card renderRow={rows.row3} />
         </div>
       </div>
     </>
