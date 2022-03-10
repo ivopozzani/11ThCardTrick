@@ -20,7 +20,7 @@ const cardNumerals = [
   "K",
 ];
 const ROWSIZE = 7;
-let counter = 0;
+let trickStage = 0;
 
 const setInitialState = () => {
   const cardsToTrick = initialCardsTrick(cardSuits, cardNumerals);
@@ -37,7 +37,7 @@ function App() {
 
   const updateRowsState = (before, middle, after) => {
     const cardsToDeal = [...before, ...middle, ...after];
-    counter++;
+    trickStage++;
 
     rows.row1 = [];
     rows.row2 = [];
@@ -50,13 +50,13 @@ function App() {
     }
     setRows({ row1: rows.row1, row2: rows.row2, row3: rows.row3 });
 
-    if (counter === 3) {
+    if (trickStage === 3) {
       setActiveState(true);
     }
   };
 
   const restartTrick = () => {
-    counter = 0;
+    trickStage = 0;
     setRows(setInitialState());
     setActiveState(false);
   };
