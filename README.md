@@ -25,7 +25,7 @@ $ git clone https://github.com/ivopozzani/card-trick.git
 - Install dependecies
 
 ```
-$ yarn install
+$ npm install
 
 ```
 
